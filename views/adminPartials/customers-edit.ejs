@@ -1,0 +1,40 @@
+<div class="card card-primary">
+    <div class="card-header">
+      <h3 class="card-title">Kurumsal Müşteri Bilgileri Düzenleme</h3>
+    </div>
+    <!-- /.card-header -->
+    <!-- form start -->
+    <form action="/customers-update/<%= customers._id %>?_method=PUT" method="POST" >
+      <div class="card-body row">
+          <div class="input-group mb-3 col-lg-5 ">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default">Görsel Yolu 1:</span>
+            </div>
+            <input value="<%= customers.customer1%>" name="customer1" type="text" class="form-control" >
+          </div>
+          <div class="input-group mb-3 col-lg-5 ">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default">Görsel Yolu 2:</span>
+            </div>
+            <input value="<%= customers.customer2%>" name="customer2" type="text" class="form-control" >
+          </div>
+          <div class="input-group mb-3 col-lg-5 ">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default">Görsel Yolu 3:</span>
+            </div>
+            <input value="<%= customers.customer3%>" name="customer3" type="text" class="form-control" >
+          </div>
+          <div class="input-group mb-3 col-lg-5 ">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default">Görsel Yolu 4:</span>
+            </div>
+            <input value="<%= customers.customer4%>" name="customer4" type="text" class="form-control" >
+          </div>
+      </div>
+      <!-- /.card-body -->
+
+      <div class="card-footer">
+        <button type="submit" class="btn btn-primary">İletişim Bilgilerini Güncelle</button>
+      </div>
+    </form>
+  </div>

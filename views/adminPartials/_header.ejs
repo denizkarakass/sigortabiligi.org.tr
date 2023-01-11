@@ -1,0 +1,272 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/Assets/Images/favicon.ico" type="image/x-icon" />
+  <title>Yönetim Paneli | Sigorta Birliği</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="/admin_as/https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="/admin_as/plugins/fontawesome-free/css/all.min.css">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="/admin_as/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="/admin_as/dist/css/adminlte.min.css">
+</head>
+<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+<div class="wrapper">
+
+  <!-- Preloader -->
+  <div class="preloader flex-column justify-content-center align-items-center">
+    <img class="animation__wobble" src="/Assets/Images/favicon.ico" alt="sigortabirligi" height="60" width="60">
+  </div>
+
+  <!-- Navbar -->
+  <nav class="main-header navbar navbar-expand navbar-dark">
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="/admin_as/#" role="button"><i class="fas fa-bars"></i></a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="/" class="nav-link">Anasayfa</a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="/" class="nav-link">Hakkımızda</a>
+      </li>
+    </ul> 
+
+    <!-- Right navbar links -->
+    <ul class="navbar-nav ml-auto">
+  
+      <li class="nav-item">
+        <a class="nav-link" data-widget="fullscreen"  role="button">
+          <i class="fas fa-expand-arrows-alt"></i>
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="/" class="brand-link">
+      <img src="/Assets/Images/favicon.ico" alt=" Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <span class="brand-text font-weight-light">Sigorta Birliği</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="info">
+          <a href="#" class="d-block">Hoşgeldin, <%= user.name %></a>
+        </div>
+      </div>
+
+     
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <li class="nav-item ">
+            <a href="/admin_as/#" class="nav-link active">
+              <i class="nav-icon fas fa-star"></i>
+              <p>
+                Yönetim Paneli
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href="/yonetim-paneli" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Ana Panel</p>
+                    </a>
+                  </li>
+            <% if(user.role=='agenta' || user.role=='admin' ){ %>
+                <li class="nav-item">
+                    <a href="/police-ekle" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Poliçe Ekle</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/policelerim" class="nav-link ">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Poliçeleri Düzenle</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/kefalet-ekle" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Kefalet Sigortası Ekle</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/kefaletlerim" class="nav-link ">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Kefalet Sigortası Düzenle</p>
+                    </a>
+                  </li>
+              <% } %>  
+            </ul>
+          </li>
+          <li class="nav-item ">
+            <a href="/admin_as/#" class="nav-link ">
+              <i class="nav-icon fas fa-question"></i>
+              <p>
+                Sorgular
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a> 
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href="/sase-no-sorgu" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Şase No ile Poliçe Sorgula</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/kefalet-sorgulama" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Kefalet Sigorta Sorgula</p>
+                    </a>
+                  </li>
+            </ul>
+          </li>
+          <% if(user.role=='agenta' || user.role=='admin' ){ %>
+          <li class="nav-item ">
+            <a href="/admin_as/#" class="nav-link ">
+              <i class="nav-icon fas fa-calendar"></i>
+              <p>
+                Poliçeler
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href="/sase-no-sorgu" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Poliçe Sorgula</p>
+                    </a>
+                  </li>
+                    <li class="nav-item">
+                        <a href="/police-ekle" class="nav-link">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Poliçe Ekle</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="/policelerim" class="nav-link ">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Poliçelerimi Gör</p> <!-- DÜzenle ve Sİl işlemleri buraya -->
+                        </a>
+                      </li>
+            </ul>
+          </li>
+          <% } %>  
+
+          <li class="nav-item ">
+            <a href="/admin_as/#" class="nav-link ">
+              <i class="nav-icon fas fa-calendar"></i>
+              <p>
+                Kefalet Sigortaları
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href="/kefalet-sorgulama" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Kefalet Sigortası Sorgula</p>
+                    </a>
+                  </li>
+                  <% if(user.role=='agenta' || user.role=='admin' ){ %>
+                    <li class="nav-item">
+                        <a href="/kefalet-ekle" class="nav-link">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Kefalet Sigortası Ekle</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="/kefaletlerim" class="nav-link ">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Kefalet Sigortalarını Gör</p> <!-- DÜzenle ve Sİl işlemleri buraya -->
+                        </a>
+                      </li>
+                  <% } %>  
+            </ul>
+          </li>
+       
+          <li class="nav-item ">
+            <a href="/user-update/<%= user._id %>" class="nav-link ">
+              <i class="nav-icon fas fa-user-tie"></i>
+              <p>
+                Bilgilerimi Güncelle
+              </p>
+            </a>
+          </li>
+           
+          <% if( user.role=='admin' ){ %>
+              <li class="nav-item ">
+                <a href="/admin_as/#" class="nav-link ">
+                  <i class="nav-icon fas fa-certificate"></i>
+                  <p>
+                    Siteyi Düzenle
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                      <li class="nav-item">
+                        <a href="/sozlesme-duzenle" class="nav-link">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Sözleşme Düzenleme</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="/iletisim-duzenle" class="nav-link">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Yardım & İletişim Bilgisi Düzenle</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="/neden-duzenle" class="nav-link">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Neden Biz Düzenle</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="/musteri-duzenle" class="nav-link">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Müşterilerimiz Düzenle</p>
+                        </a>
+                      </li>
+                </ul>
+              </li>
+            <% } %>   
+
+            <% if( user.role=='admin' ){ %>
+              <li class="nav-item ">
+                <a href="/user-manage" class="nav-link ">
+                  <i class="nav-icon fas fa-user-tie"></i>
+                  <p>
+                    Üyeleri Yönet
+                  </p>
+                </a>
+              </li>
+              <% } %>   
+
+        </ul>
+        
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>

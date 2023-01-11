@@ -1,0 +1,41 @@
+<section class="section section--gray">
+    <section class="section__inner">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-8 col-lg-offset-3 col-md-offset-2">
+
+                    <div class="helper">
+                        <div class="icon icon-help icon-60px u-text-center"></div>
+                        <h2 class="helper__title">Yardıma ihtiyacınız var mı?</h2>
+                        <p class="u-text-center">
+                           <%= contact.help_text %>
+                        </p>
+
+                        <div class="info u-pad-top-small hidden-xs">
+                            <div class="info__tel"><%= contact.phone %> <br> <%= contact.phone2 %>  </div>
+                            <div class="info__line"></div>
+                            <div class="info__mail">
+                                <a class="link" target="_blank"
+                                   href="https://wa.me/<%= contact.whatsapp %>?text=">Whatsapp Destek Hattı</a>
+                                   
+                            </div>
+                        </div>
+                        <div class="visible-xs mobile-helper-menu">
+                            <div class="flex flex--vertical-center text-center">
+                                <div class="flex__col--xs-6">
+                                    <a href="tel:<%= contact.phone %>" class="button button--primary"><i class="icon-phone"></i>
+                                        Hemen Arayın</a>
+                                </div>
+                                <div class="flex__col--xs-6">
+                                    <a  href="https://wa.me/<%= contact.whatsapp %>?text="
+                                         class="button button--secondary">Whatsapp Destek Hattı</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+</section>

@@ -1,0 +1,47 @@
+<div class="card card-primary">
+    <div class="card-header">
+      <h3 class="card-title">Kefalet Sigortası Ekleme</h3>
+    </div> 
+    <!-- /.card-header --> 
+    <!-- form start -->
+    <form action="/kefalet-add" method="POST" > 
+      <div class="card-body row">
+          <div class="input-group mb-3 col-lg-5 ">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default">Belge numarasını giriniz:</span>
+            </div>
+            <input name="belgeNo" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+          </div>
+          <div class="input-group mb-3 col-lg-5 ">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default">Poliçe numarasını giriniz:</span>
+            </div>
+            <input name="policeNo" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+          </div>
+          <div class="input-group mb-3 col-lg-5 ">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default">Firma Ünvanını giriniz:</span>
+            </div>
+            <input name="firma_unvan" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+          </div>
+          <div class="input-group mb-3 col-lg-5 ">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default">Vergi numarasını giriniz:</span>
+            </div>
+            <input name="vergi_no" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+          </div>
+          <div class="input-group mb-3 col-lg-5 ">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default">Kefalet senedi numarasını giriniz:</span>
+            </div>
+            <input name="kefalet_senedi_no" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+          </div>
+       
+      </div>
+      <!-- /.card-body -->
+
+      <div class="card-footer">
+        <button type="submit" class="btn btn-primary">Kefalet Sigortasını Ekle</button>
+      </div>
+    </form>
+  </div>

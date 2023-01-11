@@ -1,0 +1,100 @@
+<center> <br>
+    <div class="container">
+        <div class="row">
+            <div class="col-3"> <strong>Poliçe Durumu </strong> </div>
+            <div class="col-3"> <strong>Poliçe No </strong> </div>
+            <div class="col-3"> <strong>Diğer Bilgiler </strong> </div>
+            <div class="col-3"> <strong> </strong> </div>
+      </div>
+      <div class="row">
+        <% for(let i=0; i< kefalets.length; i++){ %>
+            <div class="kutu"></div>
+            <div class="col-3"> <p style="font-size: 16px;" class="mobil-p"><%= kefalets[i].status %></p> </div> 
+            <div class="col-3"> <p style="font-size: 16px;" class="mobil-p"><%= kefalets[i].policeNo %></p> </div>
+            <div class="col-3"> <p class="mobil-p"><button class="btn btn-primary col-12" type="button"  data-toggle="modal" data-target="#exampleModal"> Devamı  </button></p></div> 
+            <% if(user.role == 'admin' || user.role == 'agenta'){ %>
+                <div class="col-3"> <p class="mobil-p"><button class="btn btn-primary col-12" type="button"  data-toggle="modal" data-target="#edit">Düzenle </button></p></div> 
+                <% } %> 
+
+             <!-- Diğer Bilgiler -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Kefalet Sigortası Bilgileri</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Poliçe Veriliş Tarihi: <%= kefalets[i].verilis_date %></p>
+          <p>Poliçe Veren Sigorta: <%= kefalets[i].veren_sigorta %></p>
+          <p>Firma Ünvanı: <%= kefalets[i].firma_unvan %></p>
+          <p>Poliçe Belgesi (PDF): <a href="<%= kefalets[i].belge_pdf %>">Tıkla İndir</a></p>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+              <!-- Düzenleme -->
+<div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Kefalet Sigorta Düzenleme</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <a class="dropdown-item"style="color: rgb(0, 255, 21);" href="/kefalet/<%= kefalets[i]._id %>"> Kefalet Sigorta DÜZENLE</a>
+                  <a class="dropdown-item" style="color: red;" href="/kefalet/<%= kefalets[i]._id %>?_method=DELETE"> Kefalet Sigorta SİL</a>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+        </div>
+      </div>
+    </div>
+  </div>
+         <% } %>
+         <div class="kutu"></div>
+      </div>
+      </div>
+</center> 
+
+ 
+<style>
+
+@media only screen and (max-width: 600px) {
+    strong{
+        font-size: 12px;
+    }
+    .mobil-p{
+        font-size: 10px;
+    }
+    button{
+        width: 25%;
+    }
+    .mobil-a{
+        font-size: 10px;
+    }
+}
+
+
+    p{
+        font-size: 16px;
+    }
+ 
+    .kutu{
+        width: 100%;
+        height: 2px;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        background-color: #1450d2;
+    }
+</style>
+

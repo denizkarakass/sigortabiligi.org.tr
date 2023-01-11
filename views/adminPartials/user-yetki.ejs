@@ -1,0 +1,28 @@
+<div class="card card-primary">
+    <div class="card-header">
+      <h3 class="card-title"> Yetki Verme / Yetki Alma</h3>
+    </div>
+    <!-- /.card-header -->
+    <!-- form start -->
+   <center>
+    <form action="/user-manage-update/<%= users._id %>?_method=PUT" method="POST" > <br>
+        <p>Kullanıcı Adı: <%= users.name %></p>
+        <p>Kullanıcı Yetkisi: <%= users.role %></p>
+        <p>Vermek istediğin yetkiyi seç. <br></p>
+          <select  name="role" class="form-select" aria-label=".form-select-lg example">
+              <option value="user" selected="selected">Üye Yetkisi</option>
+              <option value="agenta">Acenta Yetkisi</option>
+              <option value="admin">Admin Yetkisi</option>
+            </select>
+         <br><br>
+        </div>
+        <!-- /.card-body -->
+  
+        <div class="card-footer">
+          <button style="margin-left: 45%;" type="submit" class="btn btn-primary">Seçilen Yetkiyi Ver</button>
+        </div>
+      </form>
+   </center>
+
+
+  </div>

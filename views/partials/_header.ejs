@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="content-language" content="tr" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+    <link rel="icon" href="Assets/Images/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" sizes="57x57" href="">
+    <link rel="icon" type="image/png" sizes="192x192" href="">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="ms-icon-144x144.html">
+    <link rel="stylesheet" href="Assets/Styles/main.css" charset="utf-8">
+    <!--[if lt IE 9]>
+  <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+    <link href="Assets/Styles/FormValidation/formValidation3f56.css?v=11" rel="stylesheet" />
+    <link href="Assets/Styles/HelperStyle3f56.css?v=11" rel="stylesheet" />
+    <link href="Assets/Styles/dragdealer3f56.css?v=11" rel="stylesheet" />
+
+    <script src="Assets/Scripts/jquery-3.6.0.min.js"></script>
+    <script src="Assets/Scripts/jquery.unobtrusive-ajax3f56.js?v=11"></script>
+    <script src="Assets/Scripts/dragdealer3f56.js?v=11"></script>
+    <script src="Assets/Scripts/FormValidation/jquery.maskedinput3f56.js?v=11"></script>
+    <script src="Assets/Scripts/FormValidation/formValidation3f56.js?v=11"></script>
+    <script src="Assets/Scripts/FormValidation/bootstrap3f56.js?v=11"></script>
+    <script src="Assets/Scripts/moment3f56.js?v=11"></script>
+    <script src="Assets/Scripts/helperScript3f56.js?v=11"></script>
+
+    <title>Araç Hasar Sorgulama | Sigorta Birliği</title>
+</head>
+
+<body>
+
+
+
+
+    <div id="divBusyIndicator" style="display: none;">
+        <div class="ajax-loader-mask"></div>
+        <div class="ajax-loader-gif"></div>
+    </div>
+
+
+    <div id="page">
+        <div class="page-wrapper">
+            <!-- Mobile Starts -->
+            <nav class="mobile-menu" id="menu-right" data-image-target="Assets/Images/logo-70-43.svg">
+                <ul class="mm-list">
+                    <% if(!userIN){ %>
+                        <li class="mm-list__item mm-list__item--blue"><a href="/uye-ol">Üye Ol</a> </li>
+                        <li class="mm-list__item mm-list__item--blue"><a href="/giris-yap"> Giriş Yap</a></li>
+                        <% } %>
+                            <% if(userIN){ %>
+                                <li class="mm-list__item mm-list__item--blue"><a href="/yonetim-paneli">Yönetim
+                                        Panelim</a> </li>
+                                <li class="mm-list__item mm-list__item--blue"><a href="/users/logout">Çıkış Yap</a></li>
+                                <% } %>
+
+                                    <li class="mm-list__item mm-list__item--mmenu-footer">
+                                        <p>Sorularınız için, <br />
+                                            <%= contact.phone %> <br>
+                                                <%= contact.phone2 %> <br>
+                                                <%= contact.email %>
+                                        </p>
+                                        <a href="tel:<%= contact.phone %>" class="button button--primary"><i
+                                                class="icon-phone"></i>İletişime
+                                            Geçin</a>
+                                        <p>Sigorta Birliği</p>
+                                    </li>
+                </ul>
+            </nav>
+            <!-- Mobile Ends -->
+
+            <!-- Web Starts -->
+            <div class="header-menu other-m-menu visible-xs text-center">
+                <div class="flex flex--vertical-center">
+                    <div class="flex__col flex__col--xs-3"><a href="#menu" class="open-menu"><i
+                                class="icon-bars"></i></a></div>
+                    <div class="flex__col flex__col--xs-6">
+                        <a href="/">
+                            <img src="Assets/Images/logo-70-43.svg" /></a>
+                    </div>
+                    <div class="flex__col flex__col--xs-3">
+                        <a href="#menu-right" class="pull-right"><i class="icon-user"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="header-menu other-m-menu hidden text-center">
+                <div class="flex flex--vertical-center">
+                    <div class="flex__col flex__col--xs-3"><a href="#menu" class="open-menu"><i
+                                class="icon-bars"></i></a></div>
+                    <div class="flex__col flex__col--xs-6">
+                        <h1 class="page-title">Kurumsal</h1>
+                    </div>
+                    <div class="flex__col flex__col--xs-3">
+                        <a href="#menu-right" class="pull-right"><i class="icon-user"></i></a>
+                    </div>
+                </div>
+            </div>
+            <!-- Top navbar -->
+            <nav class="navbar-top hidden-xs">
+                <div class="container">
+                    <div class="flex">
+                        <div class="flex__col flex__col-md-8 flex__col--sm-8" style="padding-top: 12px;">
+                            <p>Arayın yardımcı olalım: <span class="u-text-bold">
+                                    <%= contact.phone %> <strong> | </strong>
+                                        <%= contact.phone2 %>   <strong> || </strong> Mail: <%= contact.email %>
+                                </span></p>
+                        </div>
+                        <div class="flex__col flex__col--md-4 flex__col--sm-4">
+                            <ul class="top-menu">
+
+                                <% if(!userIN){ %>
+                                    <li><a href="giris-yap">Giriş Yap</a></li>
+                                    <li><a href="uye-ol">Üye Ol</a></li>
+                                    <% } %>
+
+                                        <% if(userIN){ %>
+                                            <li><a href="/yonetim-paneli">Yönetim Panelim</a></li>
+                                            <li><a href="/users/logout">Çıkış Yap</a></li>
+                                            <% } %>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <!-- Web Ends -->
+            <!-- Mobile Starts -->
+            <nav class="mobile-menu" id="menu" data-image-target="Assets/Images/logo-70-43.svg">
+                <ul class="mm-list">
+                    <li class="mm-list__item">
+                        <span><a href="/">Anasayfa</a></span>
+                    </li>
+                    <li class="mm-list__item">
+                        <span>Sorgular</span>
+
+                        <ul class="mm-list">
+                            <li class="mm-list__item"><a href="">Şase No İle Poliçe Sorgula</a></li>
+                        </ul>
+                    </li>
+                    <li class="mm-list__item"><a href="/policelerim">Poliçelerim</a></li>
+
+                    <li class="mm-list__item"><a href="/yonetim-paneli">Online İşlemler</a></li>
+
+                    <li class="mm-list__item"><a href="/hakkimizda">Hakkımızda</a></li>
+                    <li class="mm-list__item mm-list__item--mmenu-footer">
+                        <p>Sorularınız için, <br />
+                            <%= contact.phone %>
+                        </p>
+                        <a href="tel:<%= contact.phone %>" class="button button--primary"><i
+                                class="icon-phone"></i>Hemen Arayın</a>
+                        <p>Sigorta Birliği</p>
+                        <img src="Assets/Images/logo-104-64.svg" />
+                    </li>
+                </ul>
+            </nav>
+            <!-- Mobile Ends -->
+
+            <!-- Web Starts -->
+            <nav class="navbar navbar-default  yamm navbar-static-top hidden-xs">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                            data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="/">
+                            <img src="Assets/Images/logo-104-64.svg" />
+                        </a>
+                    </div>
+
+                    <div id="navbar" class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav navbar-right main-desktop-menu">
+                            <li class="dropdown yamm-dw_1 yamm-dw-base_1  ">
+                                <a href="javascript:void(0);" data-toggle="dropdown" class="dropdown-toggle"
+                                    data-target="#nav-products_1">Sorgular</a>
+                                <ul class="dropdown-menu nav-products_1" id="nav-products_1">
+                                    <li>
+                                        <div class="yamm-content">
+                                            <div class="flex u-clear-gap">
+                                                <div class="flex__col--md-12 flex__col--sm-12 nav-bg)">
+                                                    <!-- required for floating -->
+                                                    <!-- Nav tabs -->
+                                                    <ul class="nav nav-tabs tabs-left">
+                                                        <li>
+                                                            <a href="/sase-no-sorgu" data-toggle="tab"
+                                                                aria-controls="detail_2" data-target="#detail_2"
+                                                                onclick="top.location.href = this.href;" class="">Şase
+                                                                No İle Poliçe Sorgula</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="/kefalet-sorgulama" data-toggle="tab"
+                                                                aria-controls="detail_2" data-target="#detail_2"
+                                                                onclick="top.location.href = this.href;"
+                                                                class="">Kefalet Sigorta Sorgula</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div
+                                                    class="flex__col flex__col--md-4 flex__col--sm-4 hidden-xs hidden-sm">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown yamm-dw_6 yamm-dw-base_6  ">
+                                <a href="/policelerim">Poliçeler</a>
+
+                            </li>
+                            <li class="dropdown yamm-dw_21 yamm-dw-base_21  ">
+                                <a href="/yonetim-paneli">Online İşlemler</a>
+
+                            </li>
+                            <li class=""><a href="/hakkimizda">Hakkımızda</a></li>
+                        </ul>
+
+                    </div>
+                    <!--/.nav-collapse -->
+                </div>
+            </nav>
+            <!-- Web Ends -->
+
+
+            <script>
+                $('ul.nav li.yamm-dw-base_1').hover(function () {
+
+                    $('.dropdown-menu.nav-products_1').stop(true, true).delay(150).fadeIn(150);
+
+                    setTimeout(function () {
+                        $('.yamm-dw_1').addClass('open');
+                    },
+                        0);
+                },
+                    function () {
+                        $('.dropdown-menu.nav-products_1').stop(true, true).delay(150).fadeOut(150);
+                        $('.yamm-dw_1').removeClass('open');
+                        $('.yamm-dw_1').removeClass('active');
+                    });
+            </script>
+            <script>
+                $('ul.nav li.yamm-dw-base_6').hover(function () {
+
+                    $('.dropdown-menu.nav-products_6').stop(true, true).delay(150).fadeIn(150);
+
+                    setTimeout(function () {
+                        $('.yamm-dw_6').addClass('open');
+                    },
+                        0);
+                },
+                    function () {
+                        $('.dropdown-menu.nav-products_6').stop(true, true).delay(150).fadeOut(150);
+                        $('.yamm-dw_6').removeClass('open');
+                        $('.yamm-dw_6').removeClass('active');
+                    });
+            </script>
+            <script>
+                $('ul.nav li.yamm-dw-base_21').hover(function () {
+
+                    $('.dropdown-menu.nav-products_21').stop(true, true).delay(150).fadeIn(150);
+
+                    setTimeout(function () {
+                        $('.yamm-dw_21').addClass('open');
+                    },
+                        0);
+                },
+                    function () {
+                        $('.dropdown-menu.nav-products_21').stop(true, true).delay(150).fadeOut(150);
+                        $('.yamm-dw_21').removeClass('open');
+                        $('.yamm-dw_21').removeClass('active');
+                    });
+            </script>

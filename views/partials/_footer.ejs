@@ -1,0 +1,117 @@
+<footer class="footer">
+    <div class="container">
+        <div class="flex hidden-xs u-gap-bottom">
+                    <div class="flex__col flex__col--md-3 flex__col--sm-3">
+                        <h6 class="h3">Kurumsal</h6>
+                            <ul class="list-link">
+                                        <li class="list-link__item"><a href="/hakkimizda">Hakkımızda</a> </li>
+                                        <li class="list-link__item"><a href="/">Whatsapp İletişim Hattı</a> </li>
+                            </ul>
+                    </div>
+                    <div class="flex__col flex__col--md-3 flex__col--sm-3">
+                        <h6 class="h3">Sorgular</h6> 
+                            <ul class="list-link">
+                                        <li class="list-link__item"><a href="/sase-no-sorgu">Şase No İle Poliçe Sorgula</a> </li>
+                                        <li class="list-link__item"><a href="/kefalet-sorgulama">Kefalet Sigorta Sorgula</a> </li>
+                            </ul>
+                    </div>
+                    <div class="flex__col flex__col--md-3 flex__col--sm-3">
+                        <h6 class="h3">Online İşlemler</h6>
+                            <ul class="list-link">
+                                        <li class="list-link__item"><a href="/yonetim-paneli" target="_blank">Online Hizmetler & Yönetim Paneli</a> </li>
+                                   </ul>
+                    </div>
+        </div>
+        <div class="flex flex--vertical-center">
+            <div class="flex__col flex__col--sm-3 visible-md visible-sm visible-lg">
+                <ul class="social-link">
+                    <li class="social-link__item"><a href="#" target="_blank" class="facebook"><i class="icon-facebook"></i></a></li>
+                    <li class="social-link__item"><a href="#" target="_blank" class="twitter"><i class="icon-twitter"></i></a></li>
+                    <li class="social-link__item"><a href="#" target="_blank" class="instagram"><i class="icon-instagram"></i></a></li>
+                </ul>
+            </div>
+            <div class="flex__col flex__col--sm-9 r-sm-text-center v-md-text-right">
+             
+                <a href="#" data-toggle="modal" data-target="#divAgreement" class="u-font-small" onclick='agreementModelOpen()'>AYDINLATMA METNİ</a>
+                <span>|</span>
+
+                <a href="#" data-toggle="modal" data-target="#divContract" class="u-font-small">ÜYELİK SÖZLEŞMESİ</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="flex__col flex__col--md-12 hidden-xs">
+                <hr>
+            </div>
+            <div class="col-xs-12 col-sm-10 col-md-10 col-lg-11">
+              
+                <div id="footer-copyright-text">
+                    <p>Sigorta Birliği</p>
+                    <p>Tüm hakları saklıdır © 2022</p>
+                    <p>Mail Adresi: <%= contact.email %></p>
+                </div>
+            </div>
+            <div class="col-sm-2 col-md-2 col-lg-1 hidden-xs">
+                <img src="Assets/Images/secure.png">
+            </div>
+        </div>
+        <div class="polite__alert">
+            <div class="polite__alert-content">
+                
+
+                <div class="polite__alert-content_text">
+                    Size daha iyi bir deneyim ve kullanım kolaylığı sunmak amacıyla bu internet sitesinde çerezler kullanılmaktadır. Çerezleri nasıl kullandığımızı, çerez ayarlarını ne şekilde değiştirebileceğinizi <u><a href="Assets/Sigorta Birliği-%c3%87erez%20Politikas%c4%b1_v8-2.pdf" target="_blank">'Sigorta Bilgi ve Gözetim Merkezi Çerez Politikası'</a></u> linkine tıklayarak; SBM tarafından kişisel verilerinizin işlenmesi ve aktarılması süreçlerine ilişkin yöntem, amaç ve hukuki sebepler ile sahip olduğunuz haklarınızı öğrenmek için <u><a href="#" data-toggle="modal" data-target="#divAgreement" onclick='agreementModelOpen()'>Aydınlatma Metni</a></u> linkine tıklayabilirsiniz. Çerez ayarlarınızı değiştirmeniz durumunda,
+                    bu internet sitesinde bazı özelliklerin işlevselliğini kaybedebileceği dikkate alınmalıdır.
+                </div>
+                <div class="polite__alert-content_close"><span>X</span></div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<div id="divContract" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="divSearchedReportHeader">ÜYELİK SÖZLEŞMESİ</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+            Üyelik Sözleşemesi
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="divAgreement" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="divSearchedReportHeader">
+                    Aydınlatma Metni
+                </h3>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+              Aydınlatma metni
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+    </div>
+    
+
+<script src="Assets/Scripts/app.min.js"></script>
+
+
+
+</body>
+
+</html>

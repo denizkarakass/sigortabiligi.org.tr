@@ -1,0 +1,361 @@
+<%- include('partials/_header') %>
+
+<section class="section">
+    <div class="section__inner">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-md-6 col-sm-8 col-sm-offset-2 col-md-offset-3">
+                    <h2 class="section__title short hidden-xs">Üye Girişi</h2>
+                    <p class="u-text-center u-pad-bottom-small">Sorgu sonucunu görebilmek ve tüm 
+                        geçmiş sorgulara ulaşabilmek için üye girişi yapmanız gerekiyor.</p>
+
+
+<form action="/login" id="form" method="post">
+    <label class="form__label">Mail Adresiniz</label>
+                        <div>
+                            <div>
+                                <input class="form__control u-gap-bottom" id="MemberLoginReq_Email" name="email" type="text" value="" />
+                            </div>
+                            <div class="privateMessageContainer"></div>
+                        </div>
+                        <label class="form__label">Şifreniz</label>
+                        <div>
+                            <div class="fm-group fm-group--right i-focus u-gap-bottom col-sm-0">
+                                <input autocomplete="off" class="fm-group__input fm-group__input--secondary" 
+                                id="MemberLoginReq_Password" name="password" type="password" />
+                            </div>
+                            <div class="privateMessageContainer"></div>
+                        </div>
+                        <button type="submit" class="button button--primary u-full-width">Üye Girişi</button>
+</form>
+                    <div class="loginLine"></div>
+                    <div class="row u-pad-top-small u-pad-bottom-small">
+                        <div class="col-xs-6">
+                            <div class="custom-checkbox custom-checkbox--primary">
+                                <input class="custom-checkbox__inp" name="check-box2" value="" id="chk1" type="checkbox" onclick="clickIsRememberMe()" />
+                                <label class="custom-checkbox__mask" for="chk1"></label>
+                                <label for="chk1" class="u-pointer custom-checkbox__text label label--primary">Beni Hatırla</label>
+
+                                <input Value="False" data-val="true" data-val-required="The IsRememberMe field is required." id="hiddenIsRememberMe" name="IsRememberMe" type="hidden" value="False" />
+                            </div>
+                        </div>
+                        <div class="col-xs-6 u-text-right">
+                            <a href="#" class="link link--primary" data-toggle="modal" data-target="#passwordResetByEmail" >Şifremi Unuttum</a>
+                        </div>
+                    </div>
+                     
+                        
+                   <div class="loginLine"></div>
+                    <div class="u-border-form u-pad-top-small u-text-center">
+
+                        <a href="/uye-ol" class="button button--primary u-full-width">Üye Olun</a>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div id="passwordResetByEmail" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+    <!-- Modal content-->
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">Şifremi Unuttum</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div id="divForm">
+                <p>Şifre sıfırlama işlemi için hesabınızın bağlı olduğu e-posta adresini giriniz: </p>
+                <script></script>
+<form action="" autocomplete="off" id="formPasswordResetByEmail" method="post">
+                        <input class="form__control u-gap-bottom ClearInputAfterClose" id="PasswordRecoveryReq_MemberEmail" name="PasswordRecoveryReq.MemberEmail" type="text" value="" />
+
+                    </div>
+                    <div class="privateMessageContainer"></div>
+                    <button type="submit" class="button button--primary u-full-width">Şifremi Sıfırla</button>
+</form>            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Password Reset -->
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        var emailRegex = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+
+        $('#formPasswordResetByEmail').formValidation({
+            err: {
+                container: function ($field, validator) {
+                    // Look at the markup
+                    //  <div class="col-xs-4">
+                    //      <field>
+                    //  </div>
+                    //  <div class="col-xs-5 messageContainer"></div>
+                    return $field.parent().next('.privateMessageContainer');
+                }
+            },
+            icon: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                'PasswordRecoveryReq.MemberEmail': {
+                    validators: {
+                        notEmpty: {
+                            message: 'Email giriniz.'
+                        },
+                        regexp: {
+                            regexp: emailRegex,
+                            message: 'Ge&#231;erli bir email adresi giriniz.'
+                        }
+                    }
+                }
+            }
+        })
+            .on('err.field.fv', function (e, data) {
+                // $(e.target)  --> The field element
+                // data.fv      --> The FormValidation instance
+                // data.field   --> The field name
+                // data.element --> The field element
+
+                // Hide the messages
+                //data.element
+                //    .data('fv.messages')
+                //    .find('.form-control-feedback[data-fv-icon-for="' + data.field + '"]').hide()
+                //;
+            })
+            .on('success.field.fv', function (e, data) {
+                // $(e.target)  --> The field element
+                // data.fv      --> The FormValidation instance
+                // data.field   --> The field name
+                // data.element --> The field element
+
+                var $parent = data.element.parents('.form-group');
+
+                // Remove the has-success class
+                $parent.removeClass('has-success');
+
+                // Hide the success icon
+                data.element.data('fv.icon').hide();
+            })
+            .on('success.form.fv', function (e) {
+                var $form = $(e.target),
+                    fv = $form.data('formValidation');
+
+                // Prevent form submission
+                e.preventDefault();
+                //console.log($form.serialize());
+
+                //fv.defaultSubmit(); // DO NOT SUBMIT HERE. Ajax doint it for us.
+
+                // Use Ajax to submit form data
+                $.ajax({
+                    url: $form.attr('action'),
+                    type: 'POST',
+                    //async: false,
+                    data: $form.serialize(),
+                    beforeSend: function () {
+                        toggleBusyIndicator(false);
+                    },
+                    complete: function () {
+                        //checkResultAndRedirect();
+                        toggleBusyIndicator(false);
+                    },
+                    success: function (result) {
+                        triggerGeneralPopupMessageBoxWithResult(result);
+                    }
+                });
+
+                if (fv.getSubmitButton()) {
+                    fv.disableSubmitButtons(false);
+                }
+            });
+    });
+</script>
+
+</div>
+
+
+<!-- Password Reset -->
+<script type="text/javascript">
+    function sendGaPasswordReset() {
+        ga('send', 'pageview', '/member_password_reset');
+    }
+    var isRememberMe = false;
+    function clickIsRememberMe() {
+        $('#hiddenIsRememberMe').val(!isRememberMe);
+        isRememberMe = !isRememberMe;
+    }
+    function startDragDealerLogin() {
+
+        //var dragdealerSlider = new Dragdealer('demo-simple-slider');
+
+        //var dragdealerSlider2 = new Dragdealer('just-a-slider', {
+        //        animationCallback: function (x, y) {
+        //            $('#just-a-slider .value').text(Math.round(x * 1000));
+        //        }
+        //    });
+
+        //    var availHeight = $('.content-body').outerHeight() -
+        //                      $('.content-mask').outerHeight();
+        //    var dragdealerContentScroller = new Dragdealer('content-scroller', {
+        //        horizontal: false,
+        //        vertical: true,
+        //        yPrecision: availHeight,
+        //        animationCallback: function (x, y) {
+        //            $('.content-body').css('margin-top', -y * availHeight);
+        //        }
+        //    });
+
+        var slideToUnlockOld = new Dragdealer('slide-to-unlock-login', {
+            steps: 2,
+            callback: function (x, y) {
+                // Only 0 and 1 are the possible values because of "steps: 2"
+                if (x) {
+                    this.disable();
+                    //        $('#slide-to-unlock-old').fadeOut();
+                    confirmIsHumanLogin();
+                    // Bring unlock screen back after a while
+                    //        setTimeout(function() {
+                    //          slideToUnlockOld.enable();
+                    //          slideToUnlockOld.setValue(0, 0, true);
+                    //          $('#slide-to-unlock-old').fadeIn();
+                    //        }, 5000);
+                }
+            }
+        });
+    }
+    
+
+    var isHumanLogin = true;
+    function confirmIsHumanLogin() {
+        var json = { "encryptedCaptchaString": '' };
+
+        $.ajax({
+            url: 'CheckIsHuman', 
+            type: 'POST',
+            async: false,
+            dataType: 'json',
+            data: JSON.stringify(json),
+                                                    
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('Accept', "text/html; charset=UTF-8");
+                toggleBusyIndicator(false);
+            },
+            contentType: 'application/json;charset=UTF-8',
+            complete: function () {
+                toggleBusyIndicator(false);
+            },
+            success: function (data) {
+                isHumanLogin = data;
+                if (data) {
+                    $('#spanIamhumanLogin').hide();
+                }
+
+                return data;
+            }
+        });
+
+        return false;
+    }
+    
+    $(document).ready(function () {
+        startDragDealerLogin();
+        var emailRegex = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+        var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$.!,%*?_#-])(?!.*(.)\1\1)[A-Za-z\d$.!,%*?_#-]{10,}$/;
+        
+        $('#form').on('init.field.fv', function(e, data) {
+            // data.fv      --> The FormValidation instance
+            // data.field   --> The field name
+            // data.element --> The field element
+
+            var $parent = data.element.parents('.form-group'),
+                $icon   = $parent.find('.clearValidationOnFocustOut[data-fv-field="' + data.field + '"]');
+
+            // You can retrieve the icon element by
+            // $icon = data.element.data('fv.icon');
+
+            $icon.on('focusout', function() {
+                if(data.element.val() == '') {
+                    data.fv.resetField(data.element);
+                }
+                // Check if the field is valid or not via the icon class
+                //if ($icon.hasClass('glyphicon-remove')) {
+                //    // Clear the field
+                //    data.fv.resetField(data.element);
+                //}
+            });
+        }).formValidation({
+            err: {
+                container: function ($field, validator) {
+                    // Look at the markup
+                    //  <div class="col-xs-4">
+                    //      <field>
+                    //  </div>
+                    //  <div class="col-xs-5 messageContainer"></div>
+                    return $field.parent().next('.privateMessageContainer');
+                }
+            },
+            icon: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                'MemberLoginReq.Email': {
+                    trigger: 'focusout',
+                    validators: {
+                        notEmpty: {
+                            message: 'Email giriniz.'
+                        },
+                        regexp: {
+                            regexp: emailRegex,
+                            message: 'Ge&#231;erli bir email adresi giriniz.'
+                        }
+                    }
+                },
+                'MemberLoginReq.Password': {
+                    validators: {
+                        notEmpty: {
+                            message: 'Şifre giriniz.'
+                        },
+                                                                        
+                    }
+                }
+            }
+        }).on('success.form.fv', function(e) {
+            // Prevent form submission
+            
+            e.preventDefault();
+            
+            if(!isHumanLogin) {
+                $('#spanIamhumanLogin').show();
+                return false;
+            }
+            
+            toggleBusyIndicator(false);
+            
+            var $form = $(e.target),
+                fv    = $(e.target).data('formValidation');
+            fv.defaultSubmit();
+            
+
+        });
+    });
+</script>
+
+
+<%- include('partials/help') %>
+        </div>
+    </div>
+   
+
+<%- include('partials/_footer') %>

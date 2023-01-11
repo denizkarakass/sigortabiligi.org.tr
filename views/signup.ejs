@@ -1,0 +1,153 @@
+<%- include('partials/_header') %>
+
+
+
+    <section class="section section--mobile-gray">
+        <div class="section__inner">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-sm-8 col-sm-offset-2 col-md-offset-3">
+                        <h2 class="section__title short hidden-xs">Üye Ol</h2>
+
+                        <form Id="formAddMember" action="/signup" method="post">
+                            <label class="form__label">Adınız Soyadınız</label>
+                            <div>
+                                <div class="col-sm-0">
+                                    <input
+                                        class="form__control u-gap-bottom onlyLetterAndSpaces denyPaste checkInputInfo"
+                                        id="AddMemberReq_FirstName" maxlength="50" name="name" type="text" value="" />
+                                </div>
+                                <div class="privateMessageContainer"></div>
+                            </div>
+
+                            <label class="form__label">E-posta Adresiniz</label>
+                            <div>
+                                <div class="col-sm-0">
+                                    <input class="form__control u-gap-bottom checkInputInfo" id="AddMemberReq_Email"
+                                        maxlength="50" name="email" type="text" value="" />
+                                </div>
+                                <div class="privateMessageContainer"></div>
+                            </div>
+                            <label class="form__label">Şifreniz</label>
+                            <div class="fm-group fm-group--right i-focus u-gap-bottom">
+                                <input autocomplete="off"
+                                    class="fm-group__input fm-group__input--secondary checkInputInfo"
+                                    id="AddMemberReq_NewPassword1" maxlength="20" name="password" type="password" />
+
+                            </div>
+                            <div class="privateMessageContainer"></div>
+                          
+
+                              <div>
+                                <div id="strengthMessage"></div><br />
+                            </div>
+
+                            <div class="privateMessageContainer"></div>
+                            <!-- <label class="account-form__label">Üye / Acenta</label> -->
+                            <div hidden  class="custom-selectbox custom-selectbox--primary u-gap-bottom-medium"
+                                id="divPackages">
+                                <select class="custom-selectbox__selectbox js-selectbox" id="ddlCurrentCityId"
+                                    name="role">
+                                    <option value="user" selected="selected" value="0">Üye / Acenta Şeçiniz</option>
+                                    <option value="user">Üye</option>
+                                    <!-- <option value="agenta">Acenta</option> -->
+                                </select>
+                                <label class="custom-selectbox__mask "></label>
+                                <div class="privateMessageContainerQuery"></div>
+                            </div>
+
+                            <button type="submit" class="button button--primary u-full-width">Üye Ol</button>
+                            <div class="custom-checkbox custom-checkbox--primary  u-pad-top-small">
+                                <input class="custom-checkbox__inp" name="check-box2" value="" id="chk1" type="checkbox"
+                                    onclick="clickIsContractRead()" />
+                                <label class="custom-checkbox__mask" for="chk1"></label>
+                                <label for="chk1" class="u-pointer custom-checkbox__text label label--primary"><a
+                                        href="#" class="link link--primary" data-toggle="modal"
+                                        data-target="#contract">Üyelik Sözleşmesi</a>'ni okudum ve onaylıyorum</label>
+
+                                <div id="spanContractMessage" style="color: red;">
+                                    <small>L&#252;tfen s&#246;zleşmeyi okuduğunuzu onaylayınız.</small>
+                                </div>
+                            </div>
+                            <div class="custom-checkbox custom-checkbox--primary  u-pad-top-small u-pad-bottom-small">
+                                <input class="custom-checkbox__inp" name="check-box2" value="" id="chk2" type="checkbox"
+                                    onclick="clickIsReceiveEmail()" />
+                                <label class="custom-checkbox__mask" for="chk2"></label>
+                                <label for="chk2"
+                                    class="u-pointer custom-checkbox__text label label--primary">Kampanyalardan haberdar
+                                    olmak istiyorum</label>
+
+                                <input Value="False" data-val="true"
+                                    data-val-required="The IsReceiveEmail field is required." id="hiddenIsReceiveEmail"
+                                    name="IsReceiveEmail" type="hidden" value="False" />
+                            </div>
+                            <div class="u-border-form u-pad-top-small u-text-center">
+                                Zaten üyeyseniz, <a href="/giris-yap" class="link link--primary">Üye Girişi Yapın</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        $(document).ready(function () {
+            $('#AddMemberReq_NewPassword1').keyup(function () {
+                $('#strengthMessage').html(checkStrength($('#AddMemberReq_NewPassword1').val()))
+            });
+
+            function checkStrength(password) {
+                var strength = 0
+                if (password.length < 6) {
+                    $('#strengthMessage').removeClass()
+                    $('#strengthMessage').addClass('Short')
+                    return 'Kısa'
+                }
+                if (password.length > 7)
+                    strength++;
+                // If password contains both lower and uppercase characters, increase strength value.
+                if (password.match(/([a-z].*[A-Z])|([A-Z].*[a-z])/))
+                    strength++;
+                // If it has numbers and characters, increase strength value.
+                if (password.match(/([a-zA-Z])/) && password.match(/([0-9])/))
+                    strength++;
+                // If it has one special character, increase strength value.
+                if (password.match(/([!,%,&,#,$,.,*,?,_,-])/))
+                    strength++
+                // If it has two special characters, increase strength value.
+                if (password.match(/(.*[!,%,&,#,$,.,*,?,_,-].*[!,%,&,#,$,.,*,?,_,-])/))
+                    strength++
+                // If value is less than 2
+                if (strength <= 2) {
+                    $('#strengthMessage').removeClass()
+                    $('#strengthMessage').addClass('Weak')
+                    return 'Zayıf'
+                } else if (strength == 3) {
+                    $('#strengthMessage').removeClass()
+                    $('#strengthMessage').addClass('Good')
+                    return 'İyi'
+                } else {
+                    $('#strengthMessage').removeClass()
+                    $('#strengthMessage').addClass('Strong')
+                    return 'Güçlü'
+                }
+            }
+        });
+
+    </script>
+
+    <link rel="stylesheet" href="/Assets/Styles/jquery-ui.css">
+
+    <script src="/Assets/Scripts/jquery-ui.js"></script>
+
+
+
+
+
+
+    <%- include('partials/help') %>
+        </div>
+        </div>
+
+        <%- include('partials/_footer') %>
